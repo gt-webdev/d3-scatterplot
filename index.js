@@ -50,16 +50,35 @@ d3.tsv("data.tsv", function(error, data) {
   data.forEach(function(d) {
     d.sepalLength = +d.sepalLength; // + operator converts string to integer
     d.sepalWidth = +d.sepalWidth;
-    console.log([d.sepalLength, d.sepalWidth].toString());
   });
 
+  // Defines domain of scales.
+  //
+  // Extent is a d3 function that returns the minimum and maximum
+  // function in an array that is passed in.
+  x.domain(d3.extent(data, function(d) {return d.sepalWidth;}));
+  y.domain(d3.extent(data, function(d) {return d.sepalLength}));
+
   /**
-   *  5. Append axes with no labels
+   *  6. Append axes with no labels
    */
 
   /**
-   *  6. Append data elements to the data
+   *  5. Append data elements to the data
    */
+  // When d3 selects all elements with the class dot, no elements
+  // are currently on the page.
+  // d3 creates new elements that are circles with the enter() function
+  // and binds the data passed into the data function to each of these elements.
+  // Each data point's x and y coordinates are based on its
+  // sepalWidth and sepalLength values.
+  svg.selectAll(".dot")
+    .data(data)
+    .enter().append("circle")
+    .attr("class", "dot")
+    .attr("r", 3.5) // Each data point has a radius of 3.5 pixels.
+    .attr("cx", function(d) {return x(d.sepalWidth);})
+    .attr("cy", function(d) {return y(d.sepalLength);});
 
   /**
    *  7. Differentiate categories of data elements with color
