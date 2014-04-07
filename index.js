@@ -19,6 +19,7 @@ var x = d3.scale.linear()
   .range([0, width]); // x and y are functions
 var y = d3.scale.linear()
   .range([height, 0]); // height to 0, because origin is top left corner
+var color = d3.scale.category10();
 
 // Axes are the reference lines for scales that are actually seen
 // on the screen. d3 handles labeling, spacing of ticks, etc. with
@@ -85,7 +86,8 @@ d3.tsv("data.tsv", function(error, data) {
     .text("Sepal Length (cm)");
 
   /**
-   *  5. Append data elements to the data (and define domain for scales)g
+   *  5. Append data elements to the data (and define domain for scales)
+   *  8. Differentiate categories of data elements with color.
    */
   // When d3 selects all elements with the class dot, no elements
   // are currently on the page.
@@ -93,17 +95,16 @@ d3.tsv("data.tsv", function(error, data) {
   // and binds the data passed into the data function to each of these elements.
   // Each data point's x and y coordinates are based on its
   // sepalWidth and sepalLength values.
+  //
+  // Color function automatically applies a color based on the category.
   svg.selectAll(".dot")
     .data(data)
     .enter().append("circle")
     .attr("class", "dot")
     .attr("r", 3.5) // Each data point has a radius of 3.5 pixels.
     .attr("cx", function(d) {return x(d.sepalWidth);})
-    .attr("cy", function(d) {return y(d.sepalLength);});
-
-  /**
-   *  8. Differentiate categories of data elements with color
-   */
+    .attr("cy", function(d) {return y(d.sepalLength);})
+    .style("fill", function(d) {return color(d.species);});
 
   /**
    *  9. Add legend
