@@ -46,19 +46,26 @@ var svg = d3.select("body").append("svg")
 /**
  *  4. Load data
  */
+d3.tsv("data.tsv", function(error, data) {
+  data.forEach(function(d) {
+    d.sepalLength = +d.sepalLength; // + operator converts string to integer
+    d.sepalWidth = +d.sepalWidth;
+    console.log([d.sepalLength, d.sepalWidth].toString());
+  });
 
-/**
- *  5. Append axes with no labels
- */
+  /**
+   *  5. Append axes with no labels
+   */
 
-/**
- *  6. Append data elements to the data
- */
+  /**
+   *  6. Append data elements to the data
+   */
 
-/**
- *  7. Differentiate categories of data elements with color
- */
+  /**
+   *  7. Differentiate categories of data elements with color
+   */
 
-/**
- *  8. Add legend
- */
+  /**
+   *  8. Add legend
+   */
+});
