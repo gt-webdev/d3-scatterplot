@@ -62,9 +62,16 @@ d3.tsv("data.tsv", function(error, data) {
   /**
    *  6. Append axes with no labels
    */
+  svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")") // Axis at the bottom
+    .call(xAxis);
+  svg.append("g")
+    .attr("class", "y axis")// No translation needed for the y axis.
+    .call(yAxis);
 
   /**
-   *  5. Append data elements to the data
+   *  5. Append data elements to the data (and define domain for scales)g
    */
   // When d3 selects all elements with the class dot, no elements
   // are currently on the page.
