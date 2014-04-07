@@ -109,4 +109,27 @@ d3.tsv("data.tsv", function(error, data) {
   /**
    *  9. Add legend
    */
+  // Creates a g element for every category
+  // Transform attribute moves every block 20 * i pixels
+  // down, where i is its index.
+  var legend = svg.selectAll(".legend")
+    .data(color.domain())
+    .enter().append("g")
+    .attr("class", "legend")
+    .attr("transform", function(d,i) { return "translate(0," + i * 20 + ")";});
+
+  // Appends the rectangles filled with colors for categories
+  legend.append("rect")
+    .attr("x", width - 18)
+    .attr("width", 18)
+    .attr("height", 18)
+    .style("fill", color);
+
+  // Appends the labels that go with the colors.
+  legend.append("text")
+    .attr("x", width-24)
+    .attr("y", 9)
+    .attr("dy", ".35em")
+    .style("text-anchor", "end")
+    .text(function(d) {return d;});
 });
