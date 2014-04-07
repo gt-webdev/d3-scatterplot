@@ -4,7 +4,7 @@
 
 /**
  *  2. Define scales and axes
- *  7. (Later) Define category colors
+ *  8. (Later) Define category colors
  */
 
 /**
@@ -16,17 +16,15 @@
  */
 
 /**
- *  5. Append axes with no labels
+ *  6. Append axes with no labels
+ *  7. Add labels to the axes.
  */
 
 /**
- *  6. Append data elements to the data
+ *  5. Append data elements to the data (and define domain for scales)
+ *  8. Differentiate categories of data elements with color.
  */
 
 /**
- *  7. Differentiate categories of data elements with color
- */
-
-/**
- *  8. Add legend
+ *  9. Add legend
  */
