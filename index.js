@@ -33,6 +33,15 @@ var yAxis = d3.svg.axis()
 /**
  *  3. Append SVG to place elements in.
  */
+// Appending an svg element to the body and
+// a g element that's moved over to account for margins
+//
+  // A g element is a container used to group objects.
+var svg = d3.select("body").append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 /**
  *  4. Load data
