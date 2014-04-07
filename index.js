@@ -7,7 +7,7 @@ var margin = {top: 20, right: 20, bottom: 30, left: 40},
 
 /**
  *  2. Define scales and axes
- *  7. (Later) Define category colors
+ *  8. (Later) Define category colors
  */
 // Scales map an input domain to an output range;
 // AKA maps values from your data to some pixel value,
@@ -61,14 +61,28 @@ d3.tsv("data.tsv", function(error, data) {
 
   /**
    *  6. Append axes with no labels
+   *  7. Add labels to the axes.
    */
   svg.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0," + height + ")") // Axis at the bottom
-    .call(xAxis);
+    .call(xAxis)
+    .append("text")
+    .attr("class", "label")
+    .attr("x", width)
+    .attr("y", -6)// x and y values are based on where x axis is.
+    .style("text-anchor", "end")
+    .text("Sepal Width (cm)");
   svg.append("g")
     .attr("class", "y axis")// No translation needed for the y axis.
-    .call(yAxis);
+    .call(yAxis)
+    .append("text")
+    .attr("class", "label")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 6) // y value is based on location of the y axis.
+    .attr("dy", ".71em")
+    .style("text-anchor", "end")
+    .text("Sepal Length (cm)");
 
   /**
    *  5. Append data elements to the data (and define domain for scales)g
@@ -88,10 +102,10 @@ d3.tsv("data.tsv", function(error, data) {
     .attr("cy", function(d) {return y(d.sepalLength);});
 
   /**
-   *  7. Differentiate categories of data elements with color
+   *  8. Differentiate categories of data elements with color
    */
 
   /**
-   *  8. Add legend
+   *  9. Add legend
    */
 });
